@@ -13,8 +13,15 @@ export function schedulesShow({ dailySchedules }) {
     periodAfternoon.innerHTML = "";
     periodNight.innerHTML = "";
 
+    // Sort schedules by time before rendering
+    const sortedSchedules = dailySchedules.sort((a, b) => {
+      const timeA = dayjs(a.when).hour();
+      const timeB = dayjs(b.when).hour();
+      return timeA - timeB;
+    });
+
     // Create and add schedule items
-    dailySchedules.forEach((schedule) => {
+    sortedSchedules.forEach((schedule) => {
       // Build schedule item element
       const item = document.createElement("li");
       const time = document.createElement("strong");
