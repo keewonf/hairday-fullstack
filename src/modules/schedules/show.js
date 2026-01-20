@@ -1,16 +1,21 @@
+// Display scheduled appointments organized by time period
 import dayjs from "dayjs";
 
 const periodMorning = document.getElementById("period-morning");
 const periodAfternoon = document.getElementById("period-afternoon");
 const periodNight = document.getElementById("period-night");
 
+// Render schedules grouped into morning, afternoon, and night periods
 export function schedulesShow({ dailySchedules }) {
   try {
+    // Clear previous schedules
     periodMorning.innerHTML = "";
     periodAfternoon.innerHTML = "";
     periodNight.innerHTML = "";
 
+    // Create and add schedule items
     dailySchedules.forEach((schedule) => {
+      // Build schedule item element
       const item = document.createElement("li");
       const time = document.createElement("strong");
       const name = document.createElement("span");
@@ -20,6 +25,7 @@ export function schedulesShow({ dailySchedules }) {
       time.textContent = dayjs(schedule.when).format("HH:mm");
       name.textContent = schedule.name;
 
+      // Add cancel button
       const cancelIcon = document.createElement("img");
       cancelIcon.classList.add("cancel-icon");
       cancelIcon.setAttribute("src", "./src/assets/cancel.svg");
@@ -27,6 +33,7 @@ export function schedulesShow({ dailySchedules }) {
 
       item.append(time, name, cancelIcon);
 
+      // Categorize schedule by time period
       const hour = dayjs(schedule.when).hour();
 
       if (hour <= 12) {

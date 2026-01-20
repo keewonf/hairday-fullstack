@@ -1,3 +1,4 @@
+// Load and display available hours for the selected date
 import dayjs from "dayjs";
 
 import { openingHours } from "../../utils/opening-hours.js";
@@ -8,10 +9,12 @@ const hours = document.getElementById("hours");
 export function hoursLoad({ date, dailySchedules }) {
   hours.innerHTML = "";
 
+  // Get hours that already have schedules
   const unavailableHours = dailySchedules.map((schedule) =>
     dayjs(schedule.when).format("HH:mm"),
   );
 
+  // Determine which hours are available (not booked and not in the past)
   const opening = openingHours.map((hour) => {
     const [scheduleHour] = hour.split(":");
 
@@ -48,6 +51,7 @@ export function hoursLoad({ date, dailySchedules }) {
   hoursClick();
 }
 
+// Determine time period based on hour (morning, afternoon, night)
 function getPeriod(hour) {
   const h = Number(hour.split(":")[0]);
 
@@ -56,6 +60,7 @@ function getPeriod(hour) {
   return "night";
 }
 
+// Add period header to hours list
 function hourHeaderAdd(title) {
   const header = document.createElement("li");
   header.classList.add("hour-period");
