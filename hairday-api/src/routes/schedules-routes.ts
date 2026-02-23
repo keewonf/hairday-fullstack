@@ -6,5 +6,6 @@ const schedulesController = new SchedulesController();
 
 schedulesRoutes.get("/", schedulesController.index);
 schedulesRoutes.post("/", schedulesController.create);
+schedulesRoutes.delete("/:id", schedulesController.remove);
 
 export { schedulesRoutes };
