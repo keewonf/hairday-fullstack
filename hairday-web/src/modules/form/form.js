@@ -38,7 +38,7 @@ form.addEventListener("submit", async (e) => {
       hour: selected.textContent.trim(),
     };
 
-    const response = await fetch("http://localhost:3333/schedules", {
+    const response = await fetch("http://localhost:8080/schedules", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
