@@ -1,3 +1,5 @@
+import { AppError } from "../utils/app-error.js";
+
 type Schedule = {
   id: string;
   name: string;
@@ -8,7 +10,16 @@ const schedules: Schedule[] = [];
 
 class SchedulesRepository {
   create(data: Schedule) {
+    const alreadyTaken = schedules.some(
+      (schedule) => schedule.when.getTime() === data.when.getTime(),
+    );
+    if (alreadyTaken) throw new AppError("Horário já ocupado");
+
     schedules.push(data);
+  }
+
+  findAll() {
+    return schedules;
   }
 
   findByDate(date: string) {
@@ -28,3 +39,5 @@ class SchedulesRepository {
     }
   }
 }
+
+export { SchedulesRepository };
