@@ -1,3 +1,5 @@
+import { apiConfig } from "../../services/api-config.js";
+
 const date = document.getElementById("date");
 const client = document.getElementById("client");
 const ul = document.getElementById("hours");
@@ -32,13 +34,15 @@ form.addEventListener("submit", async (e) => {
     return;
   }
   try {
+    const dateISO = new Date(
+      `${date.value}T${selected.textContent.trim()}:00`,
+    ).toISOString();
     const schedules = {
-      date: date.value,
+      when: dateISO,
       client: client.value,
-      hour: selected.textContent.trim(),
     };
 
-    const response = await fetch("http://localhost:8080/schedules", {
+    const response = await fetch(`${apiConfig.baseURL}/schedules`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
