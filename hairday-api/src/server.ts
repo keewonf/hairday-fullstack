@@ -3,12 +3,15 @@ import type { Request, Response, NextFunction } from "express";
 import { routes } from "./routes/index.js";
 import { AppError } from "./utils/app-error.js";
 import { z, ZodError } from "zod";
+import cors from "cors";
 
 const PORT = 3333;
 
 const app = express();
 
 app.use(express.json());
+
+app.use(cors({ origin: "http://localhost:3000" }));
 
 app.use(routes);
 
