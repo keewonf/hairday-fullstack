@@ -12,15 +12,15 @@ O sistema permite selecionar data, horário disponível e cliente, além de list
 
 ### Tela principal
 
-![Tela principal](./src/assets/projectImgs/projeto.png)
+![Tela principal](./hairday-web/src/assets/projectImgs/projeto.png)
 
 ### Seleção de horário
 
-![Seleção de horário](./src/assets/projectImgs/selecao.png)
+![Seleção de horário](./hairday-web/src/assets/projectImgs/selecao.png)
 
 ### Lista de agendamentos
 
-![Agendamentos](./src/assets/projectImgs/agendamentos.png)
+![Agendamentos](./hairday-web/src/assets/projectImgs/agendamentos.png)
 
 ---
 
