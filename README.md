@@ -46,7 +46,6 @@ O sistema permite selecionar data, horário disponível e cliente, além de list
 - Webpack
 - Babel
 - Day.js
-- JSON Server
 - HTML5
 - CSS3
 - Node.js
