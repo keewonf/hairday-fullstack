@@ -3,7 +3,6 @@
   "description": "Aplicação Web para agendamento para corte de cabelo.",
   "author": "Lucas Moura",
   "scripts": {
-    "server": "json-server --watch server.json --port 8080",
     "build": "webpack",
     "dev": "webpack serve"
   },
