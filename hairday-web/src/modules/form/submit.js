@@ -34,11 +34,8 @@ form.addEventListener("submit", async (e) => {
 
     const when = dayjs(selectedDate.value).add(hour, "hour");
 
-    // Generate unique ID for schedule
-    const id = new Date().getTime().toString();
-
     // Save new schedule to API
-    await scheduleNew({ id, name, when });
+    await scheduleNew({ name, when });
 
     // Refresh schedules list
     await schedulesDay();
