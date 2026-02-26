@@ -55,7 +55,6 @@ form.addEventListener("submit", async (e) => {
     }
 
     const data = await response.json();
-    console.log("Agendamento salvo:", data);
 
     form.reset();
     if (selected) {

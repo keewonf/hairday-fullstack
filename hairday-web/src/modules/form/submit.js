@@ -12,8 +12,6 @@ const selectedDate = document.getElementById("date");
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  console.log("Enviado");
-
   try {
     // Validate client name
     const name = clientName.value.trim();
