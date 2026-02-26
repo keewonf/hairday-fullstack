@@ -32,8 +32,16 @@ form.addEventListener("submit", async (e) => {
 
     const when = dayjs(selectedDate.value).add(hour, "hour");
 
-    // Save new schedule to API
-    await scheduleNew({ name, when });
+    // Save new schedule to API and check result
+    const result = await scheduleNew({ name, when });
+    if (!result.ok) {
+      // display specific message if available
+      const msg = result.body?.message || result.error || "Não foi possível agendar.";
+      alert(msg);
+      return;
+    }
+
+    alert("Agendamento realizado com sucesso!");
 
     // Refresh schedules list
     await schedulesDay();

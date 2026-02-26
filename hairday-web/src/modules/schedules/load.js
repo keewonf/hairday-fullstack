@@ -9,7 +9,12 @@ export async function schedulesDay() {
   const date = selectedDate.value;
 
   // Fetch all schedules for selected date from API
-  const dailySchedules = await scheduleFetchByDay({ date });
+  const response = await scheduleFetchByDay({ date });
+  const dailySchedules = response.ok ? response.data || [] : [];
+
+  if (!response.ok) {
+    alert("Falha ao carregar agendamentos. Tente novamente.");
+  }
 
   // Display schedules organized by time period
   schedulesShow({ dailySchedules });

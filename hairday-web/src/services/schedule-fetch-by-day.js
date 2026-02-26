@@ -1,15 +1,10 @@
 // Fetch schedules for a specific date from API
 import { apiConfig } from "./api-config.js";
+import { request } from "./api.js";
 
+// returns { ok: boolean, status?: number, data?: any, error?: any }
 export async function scheduleFetchByDay({ date }) {
-  try {
-    // Fetch all schedules from API
-    const response = await fetch(`${apiConfig.baseURL}/schedules?date=${date}`);
-
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.log(error);
-    alert("Não foi possível buscar os agendamentos do dia selecionado.");
-  }
+  const result = await request(`${apiConfig.baseURL}/schedules?date=${date}`);
+  // rename body to data for clarity
+  return { ...result, data: result.body };
 }

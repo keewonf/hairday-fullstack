@@ -23,7 +23,12 @@ periods.forEach((period) => {
 
       if (isConfirm) {
         // Cancel schedule and refresh list
-        await scheduleCancel({ id });
+        const response = await scheduleCancel({ id });
+        if (!response.ok) {
+          alert("Não foi possível cancelar o agendamento.");
+        } else {
+          alert("Agendamento cancelado com sucesso!");
+        }
         schedulesDay();
       }
     }

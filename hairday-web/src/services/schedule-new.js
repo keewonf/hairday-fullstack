@@ -1,19 +1,13 @@
 import { apiConfig } from "./api-config.js";
+import { request } from "./api.js";
 
+// create schedule by delegating to request helper
 export async function scheduleNew({ name, when }) {
-  try {
-    // Post new schedule to API
-    await fetch(`${apiConfig.baseURL}/schedules`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ name, when }),
-    });
-
-    alert("Agendamento realizado com sucesso!");
-  } catch (error) {
-    console.log(error);
-    alert("Não foi possível agendar. Tente novamente mais tarde.");
-  }
+  return request(`${apiConfig.baseURL}/schedules`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ name, when }),
+  });
 }

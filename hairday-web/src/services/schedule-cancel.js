@@ -1,15 +1,11 @@
 import { apiConfig } from "./api-config";
+import { request } from "./api.js";
 
+// returns { ok: boolean, status?: number, error?: any }
 export async function scheduleCancel({ id }) {
-  try {
-    // Send DELETE request to remove schedule from API
-    await fetch(`${apiConfig.baseURL}/schedules/${id}`, {
-      method: "DELETE",
-    });
-
-    alert("Agendamento cancelado com sucesso!");
-  } catch (e) {
-    console.log(e);
-    alert("Não foi possível cancelar o agendamento.");
-  }
+  const result = await request(`${apiConfig.baseURL}/schedules/${id}`, {
+    method: "DELETE",
+  });
+  // we don't care about body here
+  return result;
 }
