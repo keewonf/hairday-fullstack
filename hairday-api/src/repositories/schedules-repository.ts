@@ -24,7 +24,7 @@ class SchedulesRepository {
 
   findByDate(date: string) {
     return schedules.filter((schedule) => {
-      const scheduleDate = schedule.when.toLocaleDateString("sv-SE");
+      const scheduleDate = schedule.when.toLocaleDateString("en-CA");
       return scheduleDate === date;
     });
   }
