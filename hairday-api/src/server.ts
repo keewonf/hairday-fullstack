@@ -4,14 +4,13 @@ import { routes } from "./routes/index.js";
 import { AppError } from "./utils/app-error.js";
 import { z, ZodError } from "zod";
 import cors from "cors";
-
-const PORT = 3333;
+import { env } from "./config/env.js";
 
 const app = express();
 
 app.use(express.json());
 
-app.use(cors({ origin: "http://localhost:3000" }));
+app.use(cors({ origin: env.CORS_ORIGIN }));
 
 app.use(routes);
 
@@ -30,4 +29,6 @@ app.use((error: any, req: Request, res: Response, _: NextFunction) => {
   return res.status(500).json({ message: error.message });
 });
 
-app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
+app.listen(env.PORT, () =>
+  console.log(`Server is running on port ${env.PORT}`),
+);
